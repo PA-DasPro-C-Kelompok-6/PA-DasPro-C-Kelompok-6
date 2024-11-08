@@ -27,6 +27,7 @@ def error(a=""):
 def menu_utama():
     try:
         while True:
+            clear()
             print("")
             print("===================================")
             print("|            Menu Utama           |")
@@ -36,7 +37,7 @@ def menu_utama():
             print("3. Login")
             print("4. Keluar")
             input_menu = input("Pilih menu : ")
-            if input_menu == "1":
+            if input_menu == "1": 
                 login_admin()
             elif input_menu == "2":
                 registrasi_akun()
@@ -49,6 +50,7 @@ def menu_utama():
                 quit()
             else:
                 error()
+                input("Tekan enter untuk melanjutkan.....")
     except ValueError:
         clear()
         error()
@@ -56,6 +58,7 @@ def menu_utama():
         print("===================")
         print(f"|Terjadi Kesalahan{a}|")
         print("===================")
+        input("Tekan enter untuk melanjutkan.....")
     except KeyboardInterrupt:
         try:
             print("")
@@ -76,7 +79,11 @@ def login_admin():
     admins = {"yuda": "000", "arifin": "111", "nova": "222"}
     try:
         for i in range(3):
-            username = input("Masukkan username admin: ")
+            clear()
+            print("===================================")
+            print("|           Login Admin           |")
+            print("===================================")
+            username = input("Masukkan username admin: ").lower()
             password = pwinput.pwinput("Masukkan password admin: ", mask="*")
             if username in admins and admins[username] == password:
                 print(f"Selamat datang, Admin {username}.")
@@ -86,7 +93,9 @@ def login_admin():
                 print("===========================================")
                 print("| Username atau password salah. Coba lagi |")
                 print("===========================================")
+                input("Tekan enter untuk melanjutkan.....")
 
+        clear()
         print("=====================================")
         print("| Kesempatan login anda telah habis |")
         print("=====================================")
@@ -99,6 +108,7 @@ def login_admin():
         print("===================")
         print(f"|Terjadi Kesalahan{a}|")
         print("===================")
+        input("Tekan enter untuk melanjutkan.....")
     except KeyboardInterrupt:
         try:
             print("")
@@ -116,9 +126,14 @@ def login_admin():
 # Fungsi registrasi akun
 def registrasi_akun():
     try:
-        input_username = input("Masukan Username : ")
+        clear()
+        print("===================================")
+        print("|         Registrasi User         |")
+        print("===================================")
+        input_username = input("Masukan Username : ").lower()
         if input_username in data["Username"]:
             print("Username sudah digunakan. Silakan gunakan username yang lain.")
+            input("Tekan enter untuk melanjutkan.....")
             return
         input_password = pwinput.pwinput("Masukan password : ")
         
@@ -135,6 +150,7 @@ def registrasi_akun():
         print("+---------------------------+")
         print("| Akun berhasil ditambahkan |")
         print("+---------------------------+")
+        input("Tekan enter untuk melanjutkan.....")
     
     except ValueError:
         clear()
@@ -143,6 +159,7 @@ def registrasi_akun():
         print("===================")
         print(f"|Terjadi Kesalahan{a}|")
         print("===================")
+        input("Tekan enter untuk melanjutkan.....")
     except KeyboardInterrupt:
         try:
             print("")
@@ -160,8 +177,12 @@ def registrasi_akun():
 # Fungsi login user
 def login_user():
     try:
+        clear()
+        print("===================================")
+        print("|           Login User            |")
+        print("===================================")
         for _ in range(3):
-            input_username = input("Masukan Username : ")
+            input_username = input("Masukan Username : ").lower()
             input_password = pwinput.pwinput("Masukkan password : ", mask="*")
             if input_username in data["Username"]:
                 index = data["Username"].index(input_username)
@@ -172,10 +193,14 @@ def login_user():
             print("===========================================")
             print("| Username atau password salah. Coba lagi |")
             print("===========================================")
+            input("Tekan enter untuk melanjutkan.....")
 
+        clear()
         print("=====================================")
         print("| Kesempatan login anda telah habis |")
         print("=====================================")
+        quit()
+
 
     except ValueError:
         clear()
@@ -201,6 +226,7 @@ def login_user():
 # Menu admin
 def menu_admin():
     while True:
+        clear()
         print("===================================")
         print("|            Menu Admin           |")
         print("===================================")
@@ -215,6 +241,7 @@ def menu_admin():
                 buat_reservasi_admin()
             elif pilihan == '2':
                 lihat_renovasi()
+                input("Tekan enter untuk melanjutkan.....")
             elif pilihan == '3':
                 ubah_reservasi_admin()
             elif pilihan == '4':
@@ -223,6 +250,7 @@ def menu_admin():
                 break
             else:
                 error("Pilihan")
+                input("Tekan enter untuk melanjutkan.....")
 
         except ValueError:
             clear()
@@ -231,6 +259,7 @@ def menu_admin():
             print("===================")
             print(f"|Terjadi Kesalahan{a}|")
             print("===================")
+            input("Tekan enter untuk melanjutkan.....")
         except KeyboardInterrupt:
             try:
                 print("")
@@ -248,10 +277,14 @@ def menu_admin():
 # Fungsi buat reservasi admin
 def buat_reservasi_admin():
     try:
+        clear()
+        print("===========================")
+        print("|      Buat Reservasi     |")
+        print("===========================")
         input_no = len(data_renovasi["no"]) + 1
         input_user = input("Masukan User : ")
         input_reservasi = input("Masukan Reservasi : ")
-        input_harga = input("Masukan Harga : ")
+        input_harga = int(input("Masukan Harga : "))
         input_status = input("Masukan Status Pembayaran : ")
 
         data_renovasi["no"].append(input_no)
@@ -263,9 +296,9 @@ def buat_reservasi_admin():
         print("+--------------------------------+")
         print("| Reservasi berhasil ditambahkan |")
         print("+--------------------------------+")
+        input("Tekan enter untuk melanjutkan.....")
         with open(json_renovasi, "w") as jsonrenovasi:
             json.dump(data_renovasi, jsonrenovasi, indent=4)
-
 
     except ValueError:
         clear()
@@ -274,6 +307,7 @@ def buat_reservasi_admin():
         print("===================")
         print(f"|Terjadi Kesalahan{a}|")
         print("===================")
+        input("Tekan enter untuk melanjutkan.....")
     except KeyboardInterrupt:
         try:
             print("")
@@ -285,10 +319,12 @@ def buat_reservasi_admin():
             print("===================")
             print(f"|Terjadi Kesalahan{a}|")
             print("===================")
+            input("Tekan enter untuk melanjutkan.....")
         except KeyboardInterrupt:
             pass
 
 def lihat_renovasi():
+    clear()
     table = PrettyTable()
     table.field_names = ["No", "User", "Reservasi", "Harga", "Status Pembayaran"]
 
@@ -307,6 +343,7 @@ def lihat_renovasi():
 # Fungsi ubah reservasi admin
 def ubah_reservasi_admin():
     try:
+        clear()
         lihat_renovasi()
         nomor = int(input("Masukkan nomor reservasi yang ingin diubah: "))
         if nomor in data_renovasi["no"]:
@@ -320,7 +357,7 @@ def ubah_reservasi_admin():
             
             new_user = input("Masukkan user baru (kosongkan jika tidak ada perubahan): ")
             new_reservasi = input("Masukkan reservasi baru (kosongkan jika tidak ada perubahan): ")
-            new_harga = input("Masukkan harga baru (kosongkan jika tidak ada perubahan): ")
+            new_harga = int(input("Masukkan harga baru (kosongkan jika tidak ada perubahan): "))
             new_status = input("Masukkan status pembayaran baru (kosongkan jika tidak ada perubahan): ")
             
             if new_user:
@@ -340,6 +377,7 @@ def ubah_reservasi_admin():
             print("+------------------------------+")
         else:
             print("Nomor reservasi tidak ditemukan.")
+            input("Tekan enter untuk melanjutkan.....")
 
     except ValueError:
         error()
@@ -355,6 +393,12 @@ def ubah_reservasi_admin():
         print("|  Tolong jangan tekan ctrl + c secara bersamaan!  |")
         print("====================================================")
         input("Tekan enter untuk melanjutkan.....")
+    except Exception as a:
+        print("===================")
+        print(f"|Terjadi Kesalahan{a}|")
+        print("===================")
+    except KeyboardInterrupt:
+        pass
 
 def hapus_reservasi_admin():
     try:
@@ -380,8 +424,10 @@ def hapus_reservasi_admin():
             print("+------------------------------+")
             print("|  Reservasi berhasil dihapus  |")
             print("+------------------------------+")
+            input("Tekan enter untuk melanjutkan.....")
         else:
             print("Nomor reservasi tidak ditemukan.")
+            input("Tekan enter untuk melanjutkan.....")
 
     except ValueError:
         clear()
@@ -390,6 +436,7 @@ def hapus_reservasi_admin():
         print("===================")
         print(f"|Terjadi Kesalahan{a}|")
         print("===================")
+        input("Tekan enter untuk melanjutkan.....")
     except KeyboardInterrupt:
         try:
             print("")
@@ -401,12 +448,14 @@ def hapus_reservasi_admin():
             print("===================")
             print(f"|Terjadi Kesalahan{a}|")
             print("===================")
+            input("Tekan enter untuk melanjutkan.....")
         except KeyboardInterrupt:
             pass
 
 def menu_user(index):
     try:
         while True:
+            clear()
             print("===================================")
             print("|            Menu User            |")
             print("===================================")
@@ -421,6 +470,7 @@ def menu_user(index):
                 menu_saldo_user(index)
             elif input_menu == "2":
                 lihat_jasa_renovasi()
+                input("Tekan enter untuk melanjutkan.....")
             elif input_menu == "3":
                 buat_reservasi_user(index)
             elif input_menu == "4":
@@ -431,6 +481,7 @@ def menu_user(index):
                 menu_utama()
             else:
                 print("Menu tidak tersedia. Silakan coba lagi")
+                input("Tekan enter untuk melanjutkan.....")
 
     except ValueError:
         clear()
@@ -439,17 +490,25 @@ def menu_user(index):
         print("===================")
         print(f"|Terjadi Kesalahan{a}|")
         print("===================")
+        input("Tekan enter untuk melanjutkan.....")
     except KeyboardInterrupt:
         print("")
         print("====================================================")
         print("|  Tolong jangan tekan ctrl + c secara bersamaan!  |")
         print("====================================================")
         input("Tekan enter untuk melanjutkan.....")
-
+    except Exception as a:
+        print("===================")
+        print(f"|Terjadi Kesalahan{a}|")
+        print("===================")
+        input("Tekan enter untuk melanjutkan.....")
+    except KeyboardInterrupt:
+        pass
 # Menu saldo user
 def menu_saldo_user(index):
     try:
         while True:
+            clear()
             print("===================================")
             print("|            Menu Saldo           |")
             print("===================================")
@@ -465,6 +524,7 @@ def menu_saldo_user(index):
                 menu_user(index)
             else:
                 error("Menu")
+                input("Tekan enter untuk melanjutkan.....")
 
     except ValueError:
         clear()
@@ -473,6 +533,7 @@ def menu_saldo_user(index):
         print("===================")
         print(f"|Terjadi Kesalahan{a}|")
         print("===================")
+        input("Tekan enter untuk melanjutkan.....")
     except KeyboardInterrupt:
         try:
             print("")
@@ -489,6 +550,7 @@ def menu_saldo_user(index):
 
 # Fungsi tampilkan saldo
 def lihat_saldo(index):
+    clear()
     with open(json_pengguna, "r") as jsonpengguna:
         data = json.load(jsonpengguna)
 
@@ -499,18 +561,25 @@ def lihat_saldo(index):
     table.field_names = ["Username", "Saldo E-Money"]
     table.add_row([username, f"Rp {saldo:.2f}"])
     print(table)
+    input("Tekan enter untuk melanjutkan.....")
 
 # Fungsi tambah saldo
 def tambah_saldo(index):
     try:
-        jumlah = float(input("Masukkan jumlah saldo yang ingin ditambahkan: Rp "))
+        clear()
+        print("===================================")
+        print("|            Isi Saldo            |")
+        print("===================================")
+        jumlah = int(input("Masukkan jumlah saldo yang ingin ditambahkan: Rp "))
         if 1 <= jumlah <= 10000000:
             data["Saldo"][index] += jumlah
             with open(json_pengguna, "w") as jsonpengguna:
                 json.dump(data, jsonpengguna, indent=4)
             print(f"Saldo berhasil ditambahkan: Rp {jumlah:.2f}")
+            input("Tekan enter untuk melanjutkan.....")
         else:
             print("Jumlah yang ditambahkan harus lebih besar dari 0 dan tidak lebih dari 10 juta.")
+            input("Tekan enter untuk melanjutkan.....")
 
     except ValueError:
         clear()
@@ -519,6 +588,7 @@ def tambah_saldo(index):
         print("===================")
         print(f"|Terjadi Kesalahan{a}|")
         print("===================")
+        input("Tekan enter untuk melanjutkan.....")
     except KeyboardInterrupt:
         try:
             print("")
@@ -534,6 +604,7 @@ def tambah_saldo(index):
             pass
 
 def lihat_jasa_renovasi():
+    clear()
     with open(json_pengguna, "r") as jsonpengguna:
         pengguna_data = json.load(jsonpengguna)
     table = PrettyTable()
@@ -545,6 +616,10 @@ def lihat_jasa_renovasi():
 
 def buat_reservasi_user(index):
     try:
+        clear()
+        print("===================================")
+        print("|           Buat Reservasi        |")
+        print("===================================")
         lihat_jasa_renovasi() 
         nomor = int(input("Masukkan nomor jasa yang ingin direservasi: "))
 
@@ -559,11 +634,10 @@ def buat_reservasi_user(index):
                 pengguna_data = json.load(jsonpengguna)
             
             saldo_user = pengguna_data["Saldo"][index]
-            print("")
             print("====================jasa yang dipilih dengan harga=====================")
             print(f"Anda memilih {jasa} dengan harga Rp{harga}. Saldo Anda saat ini: Rp{saldo_user:.2f}")
             if saldo_user >= harga:
-                konfirmasi = input("Apakah Anda ingin membayar menggunakan saldo Anda? (y/n): ")
+                konfirmasi = input("Apakah Anda ingin membayar menggunakan saldo Anda? (y/n)                     : ")
                 if konfirmasi.lower() == 'y':
                     saldo_user -= harga
                     pengguna_data["Saldo"][index] = saldo_user 
@@ -582,12 +656,16 @@ def buat_reservasi_user(index):
                     
                     print(f"Reservasi untuk {jasa} berhasil dibuat dengan harga Rp{harga}. Saldo Anda sekarang: Rp{saldo_user:.2f}")
                     print("=======================================================================")
+                    input("Tekan enter untuk melanjutkan.....")
                 else:
                     print("Pembayaran dibatalkan.")
+                    input("Tekan enter untuk melanjutkan.....")
             else:
                 print("Saldo Anda tidak mencukupi. Silakan tambahkan saldo terlebih dahulu.")
+                input("Tekan enter untuk melanjutkan.....")
         else:
             print("Nomor yang Anda masukkan tidak valid.")
+            input("Tekan enter untuk melanjutkan.....")
     except ValueError:
         clear()
         error()
@@ -610,6 +688,7 @@ def buat_reservasi_user(index):
             pass
 
 def lihat_bukti_reservasi():
+    clear()
     with open(json_renovasi, "r") as jsonrenovasi:
         data_renovasi = json.load(jsonrenovasi)
 
@@ -620,13 +699,18 @@ def lihat_bukti_reservasi():
     last_index = len(data_renovasi["no"]) - 1
     print("========== BUKTI RESERVASI ==========")
     print(f"Nomor Reservasi    : {data_renovasi['no'][last_index]}")
-    print(f"User                : {data_renovasi['user'][last_index]}")
+    print(f"User               : {data_renovasi['user'][last_index]}")
     print(f"Reservasi          : {data_renovasi['reservasi_user'][last_index]}")
     print(f"Harga              : Rp {data_renovasi['harga_reservasi'][last_index]}")
     print(f"Status Pembayaran  : {data_renovasi['status pembayaran'][last_index]}")
     print("=====================================")
+    input("Tekan enter untuk melanjutkan.....")
 
 def searching_jasa_renovasi():
+    clear()
+    print("===================================")
+    print("|           Cari Jasa             |")
+    print("===================================")
     with open(json_renovasi, "r") as jsonrenovasi:
         data_renovasi = json.load(jsonrenovasi)
     print("")
@@ -638,8 +722,11 @@ def searching_jasa_renovasi():
             print(f"Jasa: {data_renovasi['reservasi'][i]}")
             print(f"Harga: {data_renovasi['harga'][i]}")
             found = True
+            input("Tekan enter untuk melanjutkan.....")
     if not found:
+        print("======================================")
         print("|        Jasa tidak ditemukan        |")
-    print("======================================")
+        print("======================================")
+        input("Tekan enter untuk melanjutkan.....")
 
 menu_utama()
