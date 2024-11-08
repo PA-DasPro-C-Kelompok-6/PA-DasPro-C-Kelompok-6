@@ -1,3 +1,9 @@
+## PA-Daspro-C-Kelompok-6
+Nama Anggota Kelompok 6:
+1. Yudha Tri Atmaja (2409116095)
+2. Nova Rasyadina Anwar (2409116092)
+3. Muhammad Arifin Alqi (2409116106)
+
 ## SISTEM PEMESANAN JASA RENOVASI RUMAH
 # Deskripsi Program
 Program ini kami buat sebagai gambaran sistem jasa pemesanan renovasi dalam bentuk program python. Didalam program ini terdapat menu yang dapat diakses oleh admin dan juga pengguna. Menu yang dapat diakses oleh admin yaitu ada buat reservasi renovasi, lihat reservasi renovasi, ubah reservasi renovasi, menghapus reservasi renovasi, sementara menu yang dapat di akses pengguna yaitu ada tampilkan saldo, tambah saldo, lihat jasa renovasi, buat reservasi renovasi, lihat bukti reservasi. Sehingga program ini dibuat untuk mengetahui bagaimana cara pemesanan reservasi renovasi.
